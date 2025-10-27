@@ -1,0 +1,1168 @@
+Created by PLY version 3.10 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> variable_declaration
+Rule 2     statement -> if_else_statement
+Rule 3     statement -> function_definition
+Rule 4     statement -> expression
+Rule 5     statement -> list
+Rule 6     statement -> dictionary
+Rule 7     variable_declaration -> ID EQUALS value
+Rule 8     value -> expression
+Rule 9     value -> STRING
+Rule 10    value -> list
+Rule 11    value -> dictionary
+Rule 12    if_else_statement -> IF condition COLON statement ELSE COLON statement
+Rule 13    if_else_statement -> IF condition COLON statement
+Rule 14    condition -> expression GT expression
+Rule 15    condition -> expression LT expression
+Rule 16    condition -> expression EQEQ expression
+Rule 17    condition -> expression
+Rule 18    function_definition -> DEF ID LPAREN arg_list RPAREN COLON statement
+Rule 19    arg_list -> ID
+Rule 20    arg_list -> ID COMMA arg_list
+Rule 21    arg_list -> empty
+Rule 22    list -> LBRACKET item_list RBRACKET
+Rule 23    item_list -> value
+Rule 24    item_list -> value COMMA item_list
+Rule 25    item_list -> empty
+Rule 26    dictionary -> LBRACE pair_list RBRACE
+Rule 27    pair_list -> pair
+Rule 28    pair_list -> pair COMMA pair_list
+Rule 29    pair_list -> empty
+Rule 30    pair -> STRING COLON value
+Rule 31    expression -> term PLUS term
+Rule 32    expression -> term MINUS term
+Rule 33    expression -> term
+Rule 34    term -> factor TIMES factor
+Rule 35    term -> factor DIVIDE factor
+Rule 36    term -> factor
+Rule 37    factor -> NUMBER
+Rule 38    factor -> ID
+Rule 39    factor -> LPAREN expression RPAREN
+Rule 40    empty -> <empty>
+
+Terminals, with rules where they appear
+
+COLON                : 12 12 13 18 30
+COMMA                : 20 24 28
+DEF                  : 18
+DIVIDE               : 35
+ELSE                 : 12
+EQEQ                 : 16
+EQUALS               : 7
+GT                   : 14
+ID                   : 7 18 19 20 38
+IF                   : 12 13
+LBRACE               : 26
+LBRACKET             : 22
+LPAREN               : 18 39
+LT                   : 15
+MINUS                : 32
+NUMBER               : 37
+PLUS                 : 31
+RBRACE               : 26
+RBRACKET             : 22
+RPAREN               : 18 39
+STRING               : 9 30
+TIMES                : 34
+error                : 
+
+Nonterminals, with rules where they appear
+
+arg_list             : 18 20
+condition            : 12 13
+dictionary           : 6 11
+empty                : 21 25 29
+expression           : 4 8 14 14 15 15 16 16 17 39
+factor               : 34 34 35 35 36
+function_definition  : 3
+if_else_statement    : 2
+item_list            : 22 24
+list                 : 5 10
+pair                 : 27 28
+pair_list            : 26 28
+statement            : 12 12 13 18 0
+term                 : 31 31 32 32 33
+value                : 7 23 24 30
+variable_declaration : 1
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . variable_declaration
+    (2) statement -> . if_else_statement
+    (3) statement -> . function_definition
+    (4) statement -> . expression
+    (5) statement -> . list
+    (6) statement -> . dictionary
+    (7) variable_declaration -> . ID EQUALS value
+    (12) if_else_statement -> . IF condition COLON statement ELSE COLON statement
+    (13) if_else_statement -> . IF condition COLON statement
+    (18) function_definition -> . DEF ID LPAREN arg_list RPAREN COLON statement
+    (31) expression -> . term PLUS term
+    (32) expression -> . term MINUS term
+    (33) expression -> . term
+    (22) list -> . LBRACKET item_list RBRACKET
+    (26) dictionary -> . LBRACE pair_list RBRACE
+    (34) term -> . factor TIMES factor
+    (35) term -> . factor DIVIDE factor
+    (36) term -> . factor
+    (37) factor -> . NUMBER
+    (38) factor -> . ID
+    (39) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 8
+    IF              shift and go to state 9
+    DEF             shift and go to state 10
+    LBRACKET        shift and go to state 13
+    LBRACE          shift and go to state 14
+    NUMBER          shift and go to state 16
+    LPAREN          shift and go to state 11
+
+    statement                      shift and go to state 1
+    variable_declaration           shift and go to state 2
+    if_else_statement              shift and go to state 3
+    function_definition            shift and go to state 4
+    expression                     shift and go to state 5
+    list                           shift and go to state 6
+    dictionary                     shift and go to state 7
+    term                           shift and go to state 12
+    factor                         shift and go to state 15
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> variable_declaration .
+
+    $end            reduce using rule 1 (statement -> variable_declaration .)
+    ELSE            reduce using rule 1 (statement -> variable_declaration .)
+
+
+state 3
+
+    (2) statement -> if_else_statement .
+
+    $end            reduce using rule 2 (statement -> if_else_statement .)
+    ELSE            reduce using rule 2 (statement -> if_else_statement .)
+
+
+state 4
+
+    (3) statement -> function_definition .
+
+    $end            reduce using rule 3 (statement -> function_definition .)
+    ELSE            reduce using rule 3 (statement -> function_definition .)
+
+
+state 5
+
+    (4) statement -> expression .
+
+    $end            reduce using rule 4 (statement -> expression .)
+    ELSE            reduce using rule 4 (statement -> expression .)
+
+
+state 6
+
+    (5) statement -> list .
+
+    $end            reduce using rule 5 (statement -> list .)
+    ELSE            reduce using rule 5 (statement -> list .)
+
+
+state 7
+
+    (6) statement -> dictionary .
+
+    $end            reduce using rule 6 (statement -> dictionary .)
+    ELSE            reduce using rule 6 (statement -> dictionary .)
+
+
+state 8
+
+    (7) variable_declaration -> ID . EQUALS value
+    (38) factor -> ID .
+
+    EQUALS          shift and go to state 17
+    TIMES           reduce using rule 38 (factor -> ID .)
+    DIVIDE          reduce using rule 38 (factor -> ID .)
+    PLUS            reduce using rule 38 (factor -> ID .)
+    MINUS           reduce using rule 38 (factor -> ID .)
+    $end            reduce using rule 38 (factor -> ID .)
+    ELSE            reduce using rule 38 (factor -> ID .)
+
+
+state 9
+
+    (12) if_else_statement -> IF . condition COLON statement ELSE COLON statement
+    (13) if_else_statement -> IF . condition COLON statement
+    (14) condition -> . expression GT expression
+    (15) condition -> . expression LT expression
+    (16) condition -> . expression EQEQ expression
+    (17) condition -> . expression
+    (31) expression -> . term PLUS term
+    (32) expression -> . term MINUS term
+    (33) expression -> . term
+    (34) term -> . factor TIMES factor
+    (35) term -> . factor DIVIDE factor
+    (36) term -> . factor
+    (37) factor -> . NUMBER
+    (38) factor -> . ID
+    (39) factor -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 11
+
+    condition                      shift and go to state 18
+    expression                     shift and go to state 19
+    term                           shift and go to state 12
+    factor                         shift and go to state 15
+
+state 10
+
+    (18) function_definition -> DEF . ID LPAREN arg_list RPAREN COLON statement
+
+    ID              shift and go to state 21
+
+
+state 11
+
+    (39) factor -> LPAREN . expression RPAREN
+    (31) expression -> . term PLUS term
+    (32) expression -> . term MINUS term
+    (33) expression -> . term
+    (34) term -> . factor TIMES factor
+    (35) term -> . factor DIVIDE factor
+    (36) term -> . factor
+    (37) factor -> . NUMBER
+    (38) factor -> . ID
+    (39) factor -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 11
+
+    expression                     shift and go to state 22
+    term                           shift and go to state 12
+    factor                         shift and go to state 15
+
+state 12
+
+    (31) expression -> term . PLUS term
+    (32) expression -> term . MINUS term
+    (33) expression -> term .
+
+    PLUS            shift and go to state 23
+    MINUS           shift and go to state 24
+    $end            reduce using rule 33 (expression -> term .)
+    GT              reduce using rule 33 (expression -> term .)
+    LT              reduce using rule 33 (expression -> term .)
+    EQEQ            reduce using rule 33 (expression -> term .)
+    COLON           reduce using rule 33 (expression -> term .)
+    RPAREN          reduce using rule 33 (expression -> term .)
+    COMMA           reduce using rule 33 (expression -> term .)
+    RBRACKET        reduce using rule 33 (expression -> term .)
+    ELSE            reduce using rule 33 (expression -> term .)
+    RBRACE          reduce using rule 33 (expression -> term .)
+
+
+state 13
+
+    (22) list -> LBRACKET . item_list RBRACKET
+    (23) item_list -> . value
+    (24) item_list -> . value COMMA item_list
+    (25) item_list -> . empty
+    (8) value -> . expression
+    (9) value -> . STRING
+    (10) value -> . list
+    (11) value -> . dictionary
+    (40) empty -> .
+    (31) expression -> . term PLUS term
+    (32) expression -> . term MINUS term
+    (33) expression -> . term
+    (22) list -> . LBRACKET item_list RBRACKET
+    (26) dictionary -> . LBRACE pair_list RBRACE
+    (34) term -> . factor TIMES factor
+    (35) term -> . factor DIVIDE factor
+    (36) term -> . factor
+    (37) factor -> . NUMBER
+    (38) factor -> . ID
+    (39) factor -> . LPAREN expression RPAREN
+
+    STRING          shift and go to state 29
+    RBRACKET        reduce using rule 40 (empty -> .)
+    LBRACKET        shift and go to state 13
+    LBRACE          shift and go to state 14
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 11
+
+    item_list                      shift and go to state 25
+    value                          shift and go to state 26
+    empty                          shift and go to state 27
+    expression                     shift and go to state 28
+    list                           shift and go to state 30
+    dictionary                     shift and go to state 31
+    term                           shift and go to state 12
+    factor                         shift and go to state 15
+
+state 14
+
+    (26) dictionary -> LBRACE . pair_list RBRACE
+    (27) pair_list -> . pair
+    (28) pair_list -> . pair COMMA pair_list
+    (29) pair_list -> . empty
+    (30) pair -> . STRING COLON value
+    (40) empty -> .
+
+    STRING          shift and go to state 35
+    RBRACE          reduce using rule 40 (empty -> .)
+
+    pair_list                      shift and go to state 32
+    pair                           shift and go to state 33
+    empty                          shift and go to state 34
+
+state 15
+
+    (34) term -> factor . TIMES factor
+    (35) term -> factor . DIVIDE factor
+    (36) term -> factor .
+
+    TIMES           shift and go to state 36
+    DIVIDE          shift and go to state 37
+    PLUS            reduce using rule 36 (term -> factor .)
+    MINUS           reduce using rule 36 (term -> factor .)
+    $end            reduce using rule 36 (term -> factor .)
+    GT              reduce using rule 36 (term -> factor .)
+    LT              reduce using rule 36 (term -> factor .)
+    EQEQ            reduce using rule 36 (term -> factor .)
+    COLON           reduce using rule 36 (term -> factor .)
+    RPAREN          reduce using rule 36 (term -> factor .)
+    COMMA           reduce using rule 36 (term -> factor .)
+    RBRACKET        reduce using rule 36 (term -> factor .)
+    ELSE            reduce using rule 36 (term -> factor .)
+    RBRACE          reduce using rule 36 (term -> factor .)
+
+
+state 16
+
+    (37) factor -> NUMBER .
+
+    TIMES           reduce using rule 37 (factor -> NUMBER .)
+    DIVIDE          reduce using rule 37 (factor -> NUMBER .)
+    PLUS            reduce using rule 37 (factor -> NUMBER .)
+    MINUS           reduce using rule 37 (factor -> NUMBER .)
+    $end            reduce using rule 37 (factor -> NUMBER .)
+    GT              reduce using rule 37 (factor -> NUMBER .)
+    LT              reduce using rule 37 (factor -> NUMBER .)
+    EQEQ            reduce using rule 37 (factor -> NUMBER .)
+    COLON           reduce using rule 37 (factor -> NUMBER .)
+    RPAREN          reduce using rule 37 (factor -> NUMBER .)
+    COMMA           reduce using rule 37 (factor -> NUMBER .)
+    RBRACKET        reduce using rule 37 (factor -> NUMBER .)
+    ELSE            reduce using rule 37 (factor -> NUMBER .)
+    RBRACE          reduce using rule 37 (factor -> NUMBER .)
+
+
+state 17
+
+    (7) variable_declaration -> ID EQUALS . value
+    (8) value -> . expression
+    (9) value -> . STRING
+    (10) value -> . list
+    (11) value -> . dictionary
+    (31) expression -> . term PLUS term
+    (32) expression -> . term MINUS term
+    (33) expression -> . term
+    (22) list -> . LBRACKET item_list RBRACKET
+    (26) dictionary -> . LBRACE pair_list RBRACE
+    (34) term -> . factor TIMES factor
+    (35) term -> . factor DIVIDE factor
+    (36) term -> . factor
+    (37) factor -> . NUMBER
+    (38) factor -> . ID
+    (39) factor -> . LPAREN expression RPAREN
+
+    STRING          shift and go to state 29
+    LBRACKET        shift and go to state 13
+    LBRACE          shift and go to state 14
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 11
+
+    value                          shift and go to state 38
+    expression                     shift and go to state 28
+    list                           shift and go to state 30
+    dictionary                     shift and go to state 31
+    term                           shift and go to state 12
+    factor                         shift and go to state 15
+
+state 18
+
+    (12) if_else_statement -> IF condition . COLON statement ELSE COLON statement
+    (13) if_else_statement -> IF condition . COLON statement
+
+    COLON           shift and go to state 39
+
+
+state 19
+
+    (14) condition -> expression . GT expression
+    (15) condition -> expression . LT expression
+    (16) condition -> expression . EQEQ expression
+    (17) condition -> expression .
+
+    GT              shift and go to state 40
+    LT              shift and go to state 41
+    EQEQ            shift and go to state 42
+    COLON           reduce using rule 17 (condition -> expression .)
+
+
+state 20
+
+    (38) factor -> ID .
+
+    TIMES           reduce using rule 38 (factor -> ID .)
+    DIVIDE          reduce using rule 38 (factor -> ID .)
+    PLUS            reduce using rule 38 (factor -> ID .)
+    MINUS           reduce using rule 38 (factor -> ID .)
+    GT              reduce using rule 38 (factor -> ID .)
+    LT              reduce using rule 38 (factor -> ID .)
+    EQEQ            reduce using rule 38 (factor -> ID .)
+    COLON           reduce using rule 38 (factor -> ID .)
+    RPAREN          reduce using rule 38 (factor -> ID .)
+    COMMA           reduce using rule 38 (factor -> ID .)
+    RBRACKET        reduce using rule 38 (factor -> ID .)
+    $end            reduce using rule 38 (factor -> ID .)
+    ELSE            reduce using rule 38 (factor -> ID .)
+    RBRACE          reduce using rule 38 (factor -> ID .)
+
+
+state 21
+
+    (18) function_definition -> DEF ID . LPAREN arg_list RPAREN COLON statement
+
+    LPAREN          shift and go to state 43
+
+
+state 22
+
+    (39) factor -> LPAREN expression . RPAREN
+
+    RPAREN          shift and go to state 44
+
+
+state 23
+
+    (31) expression -> term PLUS . term
+    (34) term -> . factor TIMES factor
+    (35) term -> . factor DIVIDE factor
+    (36) term -> . factor
+    (37) factor -> . NUMBER
+    (38) factor -> . ID
+    (39) factor -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 11
+
+    term                           shift and go to state 45
+    factor                         shift and go to state 15
+
+state 24
+
+    (32) expression -> term MINUS . term
+    (34) term -> . factor TIMES factor
+    (35) term -> . factor DIVIDE factor
+    (36) term -> . factor
+    (37) factor -> . NUMBER
+    (38) factor -> . ID
+    (39) factor -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 11
+
+    term                           shift and go to state 46
+    factor                         shift and go to state 15
+
+state 25
+
+    (22) list -> LBRACKET item_list . RBRACKET
+
+    RBRACKET        shift and go to state 47
+
+
+state 26
+
+    (23) item_list -> value .
+    (24) item_list -> value . COMMA item_list
+
+    RBRACKET        reduce using rule 23 (item_list -> value .)
+    COMMA           shift and go to state 48
+
+
+state 27
+
+    (25) item_list -> empty .
+
+    RBRACKET        reduce using rule 25 (item_list -> empty .)
+
+
+state 28
+
+    (8) value -> expression .
+
+    COMMA           reduce using rule 8 (value -> expression .)
+    RBRACKET        reduce using rule 8 (value -> expression .)
+    $end            reduce using rule 8 (value -> expression .)
+    ELSE            reduce using rule 8 (value -> expression .)
+    RBRACE          reduce using rule 8 (value -> expression .)
+
+
+state 29
+
+    (9) value -> STRING .
+
+    COMMA           reduce using rule 9 (value -> STRING .)
+    RBRACKET        reduce using rule 9 (value -> STRING .)
+    $end            reduce using rule 9 (value -> STRING .)
+    ELSE            reduce using rule 9 (value -> STRING .)
+    RBRACE          reduce using rule 9 (value -> STRING .)
+
+
+state 30
+
+    (10) value -> list .
+
+    COMMA           reduce using rule 10 (value -> list .)
+    RBRACKET        reduce using rule 10 (value -> list .)
+    $end            reduce using rule 10 (value -> list .)
+    ELSE            reduce using rule 10 (value -> list .)
+    RBRACE          reduce using rule 10 (value -> list .)
+
+
+state 31
+
+    (11) value -> dictionary .
+
+    COMMA           reduce using rule 11 (value -> dictionary .)
+    RBRACKET        reduce using rule 11 (value -> dictionary .)
+    $end            reduce using rule 11 (value -> dictionary .)
+    ELSE            reduce using rule 11 (value -> dictionary .)
+    RBRACE          reduce using rule 11 (value -> dictionary .)
+
+
+state 32
+
+    (26) dictionary -> LBRACE pair_list . RBRACE
+
+    RBRACE          shift and go to state 49
+
+
+state 33
+
+    (27) pair_list -> pair .
+    (28) pair_list -> pair . COMMA pair_list
+
+    RBRACE          reduce using rule 27 (pair_list -> pair .)
+    COMMA           shift and go to state 50
+
+
+state 34
+
+    (29) pair_list -> empty .
+
+    RBRACE          reduce using rule 29 (pair_list -> empty .)
+
+
+state 35
+
+    (30) pair -> STRING . COLON value
+
+    COLON           shift and go to state 51
+
+
+state 36
+
+    (34) term -> factor TIMES . factor
+    (37) factor -> . NUMBER
+    (38) factor -> . ID
+    (39) factor -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 11
+
+    factor                         shift and go to state 52
+
+state 37
+
+    (35) term -> factor DIVIDE . factor
+    (37) factor -> . NUMBER
+    (38) factor -> . ID
+    (39) factor -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 11
+
+    factor                         shift and go to state 53
+
+state 38
+
+    (7) variable_declaration -> ID EQUALS value .
+
+    $end            reduce using rule 7 (variable_declaration -> ID EQUALS value .)
+    ELSE            reduce using rule 7 (variable_declaration -> ID EQUALS value .)
+
+
+state 39
+
+    (12) if_else_statement -> IF condition COLON . statement ELSE COLON statement
+    (13) if_else_statement -> IF condition COLON . statement
+    (1) statement -> . variable_declaration
+    (2) statement -> . if_else_statement
+    (3) statement -> . function_definition
+    (4) statement -> . expression
+    (5) statement -> . list
+    (6) statement -> . dictionary
+    (7) variable_declaration -> . ID EQUALS value
+    (12) if_else_statement -> . IF condition COLON statement ELSE COLON statement
+    (13) if_else_statement -> . IF condition COLON statement
+    (18) function_definition -> . DEF ID LPAREN arg_list RPAREN COLON statement
+    (31) expression -> . term PLUS term
+    (32) expression -> . term MINUS term
+    (33) expression -> . term
+    (22) list -> . LBRACKET item_list RBRACKET
+    (26) dictionary -> . LBRACE pair_list RBRACE
+    (34) term -> . factor TIMES factor
+    (35) term -> . factor DIVIDE factor
+    (36) term -> . factor
+    (37) factor -> . NUMBER
+    (38) factor -> . ID
+    (39) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 8
+    IF              shift and go to state 9
+    DEF             shift and go to state 10
+    LBRACKET        shift and go to state 13
+    LBRACE          shift and go to state 14
+    NUMBER          shift and go to state 16
+    LPAREN          shift and go to state 11
+
+    statement                      shift and go to state 54
+    variable_declaration           shift and go to state 2
+    if_else_statement              shift and go to state 3
+    function_definition            shift and go to state 4
+    expression                     shift and go to state 5
+    list                           shift and go to state 6
+    dictionary                     shift and go to state 7
+    term                           shift and go to state 12
+    factor                         shift and go to state 15
+
+state 40
+
+    (14) condition -> expression GT . expression
+    (31) expression -> . term PLUS term
+    (32) expression -> . term MINUS term
+    (33) expression -> . term
+    (34) term -> . factor TIMES factor
+    (35) term -> . factor DIVIDE factor
+    (36) term -> . factor
+    (37) factor -> . NUMBER
+    (38) factor -> . ID
+    (39) factor -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 11
+
+    expression                     shift and go to state 55
+    term                           shift and go to state 12
+    factor                         shift and go to state 15
+
+state 41
+
+    (15) condition -> expression LT . expression
+    (31) expression -> . term PLUS term
+    (32) expression -> . term MINUS term
+    (33) expression -> . term
+    (34) term -> . factor TIMES factor
+    (35) term -> . factor DIVIDE factor
+    (36) term -> . factor
+    (37) factor -> . NUMBER
+    (38) factor -> . ID
+    (39) factor -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 11
+
+    expression                     shift and go to state 56
+    term                           shift and go to state 12
+    factor                         shift and go to state 15
+
+state 42
+
+    (16) condition -> expression EQEQ . expression
+    (31) expression -> . term PLUS term
+    (32) expression -> . term MINUS term
+    (33) expression -> . term
+    (34) term -> . factor TIMES factor
+    (35) term -> . factor DIVIDE factor
+    (36) term -> . factor
+    (37) factor -> . NUMBER
+    (38) factor -> . ID
+    (39) factor -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 11
+
+    expression                     shift and go to state 57
+    term                           shift and go to state 12
+    factor                         shift and go to state 15
+
+state 43
+
+    (18) function_definition -> DEF ID LPAREN . arg_list RPAREN COLON statement
+    (19) arg_list -> . ID
+    (20) arg_list -> . ID COMMA arg_list
+    (21) arg_list -> . empty
+    (40) empty -> .
+
+    ID              shift and go to state 58
+    RPAREN          reduce using rule 40 (empty -> .)
+
+    arg_list                       shift and go to state 59
+    empty                          shift and go to state 60
+
+state 44
+
+    (39) factor -> LPAREN expression RPAREN .
+
+    TIMES           reduce using rule 39 (factor -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 39 (factor -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 39 (factor -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 39 (factor -> LPAREN expression RPAREN .)
+    $end            reduce using rule 39 (factor -> LPAREN expression RPAREN .)
+    GT              reduce using rule 39 (factor -> LPAREN expression RPAREN .)
+    LT              reduce using rule 39 (factor -> LPAREN expression RPAREN .)
+    EQEQ            reduce using rule 39 (factor -> LPAREN expression RPAREN .)
+    COLON           reduce using rule 39 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 39 (factor -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 39 (factor -> LPAREN expression RPAREN .)
+    RBRACKET        reduce using rule 39 (factor -> LPAREN expression RPAREN .)
+    ELSE            reduce using rule 39 (factor -> LPAREN expression RPAREN .)
+    RBRACE          reduce using rule 39 (factor -> LPAREN expression RPAREN .)
+
+
+state 45
+
+    (31) expression -> term PLUS term .
+
+    $end            reduce using rule 31 (expression -> term PLUS term .)
+    GT              reduce using rule 31 (expression -> term PLUS term .)
+    LT              reduce using rule 31 (expression -> term PLUS term .)
+    EQEQ            reduce using rule 31 (expression -> term PLUS term .)
+    COLON           reduce using rule 31 (expression -> term PLUS term .)
+    RPAREN          reduce using rule 31 (expression -> term PLUS term .)
+    COMMA           reduce using rule 31 (expression -> term PLUS term .)
+    RBRACKET        reduce using rule 31 (expression -> term PLUS term .)
+    ELSE            reduce using rule 31 (expression -> term PLUS term .)
+    RBRACE          reduce using rule 31 (expression -> term PLUS term .)
+
+
+state 46
+
+    (32) expression -> term MINUS term .
+
+    $end            reduce using rule 32 (expression -> term MINUS term .)
+    GT              reduce using rule 32 (expression -> term MINUS term .)
+    LT              reduce using rule 32 (expression -> term MINUS term .)
+    EQEQ            reduce using rule 32 (expression -> term MINUS term .)
+    COLON           reduce using rule 32 (expression -> term MINUS term .)
+    RPAREN          reduce using rule 32 (expression -> term MINUS term .)
+    COMMA           reduce using rule 32 (expression -> term MINUS term .)
+    RBRACKET        reduce using rule 32 (expression -> term MINUS term .)
+    ELSE            reduce using rule 32 (expression -> term MINUS term .)
+    RBRACE          reduce using rule 32 (expression -> term MINUS term .)
+
+
+state 47
+
+    (22) list -> LBRACKET item_list RBRACKET .
+
+    $end            reduce using rule 22 (list -> LBRACKET item_list RBRACKET .)
+    COMMA           reduce using rule 22 (list -> LBRACKET item_list RBRACKET .)
+    RBRACKET        reduce using rule 22 (list -> LBRACKET item_list RBRACKET .)
+    ELSE            reduce using rule 22 (list -> LBRACKET item_list RBRACKET .)
+    RBRACE          reduce using rule 22 (list -> LBRACKET item_list RBRACKET .)
+
+
+state 48
+
+    (24) item_list -> value COMMA . item_list
+    (23) item_list -> . value
+    (24) item_list -> . value COMMA item_list
+    (25) item_list -> . empty
+    (8) value -> . expression
+    (9) value -> . STRING
+    (10) value -> . list
+    (11) value -> . dictionary
+    (40) empty -> .
+    (31) expression -> . term PLUS term
+    (32) expression -> . term MINUS term
+    (33) expression -> . term
+    (22) list -> . LBRACKET item_list RBRACKET
+    (26) dictionary -> . LBRACE pair_list RBRACE
+    (34) term -> . factor TIMES factor
+    (35) term -> . factor DIVIDE factor
+    (36) term -> . factor
+    (37) factor -> . NUMBER
+    (38) factor -> . ID
+    (39) factor -> . LPAREN expression RPAREN
+
+    STRING          shift and go to state 29
+    RBRACKET        reduce using rule 40 (empty -> .)
+    LBRACKET        shift and go to state 13
+    LBRACE          shift and go to state 14
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 11
+
+    value                          shift and go to state 26
+    item_list                      shift and go to state 61
+    empty                          shift and go to state 27
+    expression                     shift and go to state 28
+    list                           shift and go to state 30
+    dictionary                     shift and go to state 31
+    term                           shift and go to state 12
+    factor                         shift and go to state 15
+
+state 49
+
+    (26) dictionary -> LBRACE pair_list RBRACE .
+
+    $end            reduce using rule 26 (dictionary -> LBRACE pair_list RBRACE .)
+    COMMA           reduce using rule 26 (dictionary -> LBRACE pair_list RBRACE .)
+    RBRACKET        reduce using rule 26 (dictionary -> LBRACE pair_list RBRACE .)
+    ELSE            reduce using rule 26 (dictionary -> LBRACE pair_list RBRACE .)
+    RBRACE          reduce using rule 26 (dictionary -> LBRACE pair_list RBRACE .)
+
+
+state 50
+
+    (28) pair_list -> pair COMMA . pair_list
+    (27) pair_list -> . pair
+    (28) pair_list -> . pair COMMA pair_list
+    (29) pair_list -> . empty
+    (30) pair -> . STRING COLON value
+    (40) empty -> .
+
+    STRING          shift and go to state 35
+    RBRACE          reduce using rule 40 (empty -> .)
+
+    pair                           shift and go to state 33
+    pair_list                      shift and go to state 62
+    empty                          shift and go to state 34
+
+state 51
+
+    (30) pair -> STRING COLON . value
+    (8) value -> . expression
+    (9) value -> . STRING
+    (10) value -> . list
+    (11) value -> . dictionary
+    (31) expression -> . term PLUS term
+    (32) expression -> . term MINUS term
+    (33) expression -> . term
+    (22) list -> . LBRACKET item_list RBRACKET
+    (26) dictionary -> . LBRACE pair_list RBRACE
+    (34) term -> . factor TIMES factor
+    (35) term -> . factor DIVIDE factor
+    (36) term -> . factor
+    (37) factor -> . NUMBER
+    (38) factor -> . ID
+    (39) factor -> . LPAREN expression RPAREN
+
+    STRING          shift and go to state 29
+    LBRACKET        shift and go to state 13
+    LBRACE          shift and go to state 14
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 11
+
+    value                          shift and go to state 63
+    expression                     shift and go to state 28
+    list                           shift and go to state 30
+    dictionary                     shift and go to state 31
+    term                           shift and go to state 12
+    factor                         shift and go to state 15
+
+state 52
+
+    (34) term -> factor TIMES factor .
+
+    PLUS            reduce using rule 34 (term -> factor TIMES factor .)
+    MINUS           reduce using rule 34 (term -> factor TIMES factor .)
+    $end            reduce using rule 34 (term -> factor TIMES factor .)
+    GT              reduce using rule 34 (term -> factor TIMES factor .)
+    LT              reduce using rule 34 (term -> factor TIMES factor .)
+    EQEQ            reduce using rule 34 (term -> factor TIMES factor .)
+    COLON           reduce using rule 34 (term -> factor TIMES factor .)
+    RPAREN          reduce using rule 34 (term -> factor TIMES factor .)
+    COMMA           reduce using rule 34 (term -> factor TIMES factor .)
+    RBRACKET        reduce using rule 34 (term -> factor TIMES factor .)
+    ELSE            reduce using rule 34 (term -> factor TIMES factor .)
+    RBRACE          reduce using rule 34 (term -> factor TIMES factor .)
+
+
+state 53
+
+    (35) term -> factor DIVIDE factor .
+
+    PLUS            reduce using rule 35 (term -> factor DIVIDE factor .)
+    MINUS           reduce using rule 35 (term -> factor DIVIDE factor .)
+    $end            reduce using rule 35 (term -> factor DIVIDE factor .)
+    GT              reduce using rule 35 (term -> factor DIVIDE factor .)
+    LT              reduce using rule 35 (term -> factor DIVIDE factor .)
+    EQEQ            reduce using rule 35 (term -> factor DIVIDE factor .)
+    COLON           reduce using rule 35 (term -> factor DIVIDE factor .)
+    RPAREN          reduce using rule 35 (term -> factor DIVIDE factor .)
+    COMMA           reduce using rule 35 (term -> factor DIVIDE factor .)
+    RBRACKET        reduce using rule 35 (term -> factor DIVIDE factor .)
+    ELSE            reduce using rule 35 (term -> factor DIVIDE factor .)
+    RBRACE          reduce using rule 35 (term -> factor DIVIDE factor .)
+
+
+state 54
+
+    (12) if_else_statement -> IF condition COLON statement . ELSE COLON statement
+    (13) if_else_statement -> IF condition COLON statement .
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    ELSE            shift and go to state 64
+    $end            reduce using rule 13 (if_else_statement -> IF condition COLON statement .)
+
+  ! ELSE            [ reduce using rule 13 (if_else_statement -> IF condition COLON statement .) ]
+
+
+state 55
+
+    (14) condition -> expression GT expression .
+
+    COLON           reduce using rule 14 (condition -> expression GT expression .)
+
+
+state 56
+
+    (15) condition -> expression LT expression .
+
+    COLON           reduce using rule 15 (condition -> expression LT expression .)
+
+
+state 57
+
+    (16) condition -> expression EQEQ expression .
+
+    COLON           reduce using rule 16 (condition -> expression EQEQ expression .)
+
+
+state 58
+
+    (19) arg_list -> ID .
+    (20) arg_list -> ID . COMMA arg_list
+
+    RPAREN          reduce using rule 19 (arg_list -> ID .)
+    COMMA           shift and go to state 65
+
+
+state 59
+
+    (18) function_definition -> DEF ID LPAREN arg_list . RPAREN COLON statement
+
+    RPAREN          shift and go to state 66
+
+
+state 60
+
+    (21) arg_list -> empty .
+
+    RPAREN          reduce using rule 21 (arg_list -> empty .)
+
+
+state 61
+
+    (24) item_list -> value COMMA item_list .
+
+    RBRACKET        reduce using rule 24 (item_list -> value COMMA item_list .)
+
+
+state 62
+
+    (28) pair_list -> pair COMMA pair_list .
+
+    RBRACE          reduce using rule 28 (pair_list -> pair COMMA pair_list .)
+
+
+state 63
+
+    (30) pair -> STRING COLON value .
+
+    COMMA           reduce using rule 30 (pair -> STRING COLON value .)
+    RBRACE          reduce using rule 30 (pair -> STRING COLON value .)
+
+
+state 64
+
+    (12) if_else_statement -> IF condition COLON statement ELSE . COLON statement
+
+    COLON           shift and go to state 67
+
+
+state 65
+
+    (20) arg_list -> ID COMMA . arg_list
+    (19) arg_list -> . ID
+    (20) arg_list -> . ID COMMA arg_list
+    (21) arg_list -> . empty
+    (40) empty -> .
+
+    ID              shift and go to state 58
+    RPAREN          reduce using rule 40 (empty -> .)
+
+    arg_list                       shift and go to state 68
+    empty                          shift and go to state 60
+
+state 66
+
+    (18) function_definition -> DEF ID LPAREN arg_list RPAREN . COLON statement
+
+    COLON           shift and go to state 69
+
+
+state 67
+
+    (12) if_else_statement -> IF condition COLON statement ELSE COLON . statement
+    (1) statement -> . variable_declaration
+    (2) statement -> . if_else_statement
+    (3) statement -> . function_definition
+    (4) statement -> . expression
+    (5) statement -> . list
+    (6) statement -> . dictionary
+    (7) variable_declaration -> . ID EQUALS value
+    (12) if_else_statement -> . IF condition COLON statement ELSE COLON statement
+    (13) if_else_statement -> . IF condition COLON statement
+    (18) function_definition -> . DEF ID LPAREN arg_list RPAREN COLON statement
+    (31) expression -> . term PLUS term
+    (32) expression -> . term MINUS term
+    (33) expression -> . term
+    (22) list -> . LBRACKET item_list RBRACKET
+    (26) dictionary -> . LBRACE pair_list RBRACE
+    (34) term -> . factor TIMES factor
+    (35) term -> . factor DIVIDE factor
+    (36) term -> . factor
+    (37) factor -> . NUMBER
+    (38) factor -> . ID
+    (39) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 8
+    IF              shift and go to state 9
+    DEF             shift and go to state 10
+    LBRACKET        shift and go to state 13
+    LBRACE          shift and go to state 14
+    NUMBER          shift and go to state 16
+    LPAREN          shift and go to state 11
+
+    statement                      shift and go to state 70
+    variable_declaration           shift and go to state 2
+    if_else_statement              shift and go to state 3
+    function_definition            shift and go to state 4
+    expression                     shift and go to state 5
+    list                           shift and go to state 6
+    dictionary                     shift and go to state 7
+    term                           shift and go to state 12
+    factor                         shift and go to state 15
+
+state 68
+
+    (20) arg_list -> ID COMMA arg_list .
+
+    RPAREN          reduce using rule 20 (arg_list -> ID COMMA arg_list .)
+
+
+state 69
+
+    (18) function_definition -> DEF ID LPAREN arg_list RPAREN COLON . statement
+    (1) statement -> . variable_declaration
+    (2) statement -> . if_else_statement
+    (3) statement -> . function_definition
+    (4) statement -> . expression
+    (5) statement -> . list
+    (6) statement -> . dictionary
+    (7) variable_declaration -> . ID EQUALS value
+    (12) if_else_statement -> . IF condition COLON statement ELSE COLON statement
+    (13) if_else_statement -> . IF condition COLON statement
+    (18) function_definition -> . DEF ID LPAREN arg_list RPAREN COLON statement
+    (31) expression -> . term PLUS term
+    (32) expression -> . term MINUS term
+    (33) expression -> . term
+    (22) list -> . LBRACKET item_list RBRACKET
+    (26) dictionary -> . LBRACE pair_list RBRACE
+    (34) term -> . factor TIMES factor
+    (35) term -> . factor DIVIDE factor
+    (36) term -> . factor
+    (37) factor -> . NUMBER
+    (38) factor -> . ID
+    (39) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 8
+    IF              shift and go to state 9
+    DEF             shift and go to state 10
+    LBRACKET        shift and go to state 13
+    LBRACE          shift and go to state 14
+    NUMBER          shift and go to state 16
+    LPAREN          shift and go to state 11
+
+    statement                      shift and go to state 71
+    variable_declaration           shift and go to state 2
+    if_else_statement              shift and go to state 3
+    function_definition            shift and go to state 4
+    expression                     shift and go to state 5
+    list                           shift and go to state 6
+    dictionary                     shift and go to state 7
+    term                           shift and go to state 12
+    factor                         shift and go to state 15
+
+state 70
+
+    (12) if_else_statement -> IF condition COLON statement ELSE COLON statement .
+
+    $end            reduce using rule 12 (if_else_statement -> IF condition COLON statement ELSE COLON statement .)
+    ELSE            reduce using rule 12 (if_else_statement -> IF condition COLON statement ELSE COLON statement .)
+
+
+state 71
+
+    (18) function_definition -> DEF ID LPAREN arg_list RPAREN COLON statement .
+
+    $end            reduce using rule 18 (function_definition -> DEF ID LPAREN arg_list RPAREN COLON statement .)
+    ELSE            reduce using rule 18 (function_definition -> DEF ID LPAREN arg_list RPAREN COLON statement .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ELSE in state 54 resolved as shift
