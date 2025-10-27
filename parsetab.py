@@ -5,9 +5,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'statementID NUMBER STRING IF ELSE DEF EQUALS LPAREN RPAREN LBRACKET RBRACKET LBRACE RBRACE COLON COMMA PLUS MINUS TIMES DIVIDE GT LT EQEQstatement : variable_declaration\n                 | if_else_statement\n                 | function_definition\n                 | expression\n                 | list\n                 | dictionary\n    variable_declaration : ID EQUALS valuevalue : expression\n             | STRING\n             | list\n             | dictionary\n    if_else_statement : IF condition COLON statement ELSE COLON statement\n                         | IF condition COLON statement\n    condition : expression GT expression\n                 | expression LT expression\n                 | expression EQEQ expression\n                 | expression\n    function_definition : DEF ID LPAREN arg_list RPAREN COLON statementarg_list : ID\n                | ID COMMA arg_list\n                | empty\n    list : LBRACKET item_list RBRACKETitem_list : value\n                 | value COMMA item_list\n                 | empty\n    dictionary : LBRACE pair_list RBRACEpair_list : pair\n                 | pair COMMA pair_list\n                 | empty\n    pair : STRING COLON valueexpression : term PLUS term\n                  | term MINUS term\n                  | term\n    term : factor TIMES factor\n            | factor DIVIDE factor\n            | factor\n    factor : NUMBER\n              | ID\n              | LPAREN expression RPAREN\n    empty :'
+_lr_signature = 'statementID NUMBER STRING IF ELSE DEF EQUALS LPAREN RPAREN LBRACKET RBRACKET LBRACE RBRACE COLON COMMA PLUS MINUS TIMES DIVIDE GT LT EQEQstatement : variable_declaration\n                 | if_else_statement\n                 | function_definition\n                 | expression\n                 | list\n                 | dictionary\n    variable_declaration : ID EQUALS valuevalue : expression\n             | STRING\n             | list\n             | dictionary\n             | NUMBER\n             | ID\n    if_else_statement : IF condition COLON statement ELSE COLON statement\n                         | IF condition COLON statement\n    condition : expression GT expression\n                 | expression LT expression\n                 | expression EQEQ expression\n                 | expression\n    function_definition : DEF ID LPAREN arg_list RPAREN COLON statementarg_list : ID\n                | ID COMMA arg_list\n                | empty\n    list : LBRACKET item_list RBRACKETitem_list : value\n                 | value COMMA item_list\n                 | empty\n    dictionary : LBRACE pair_list RBRACEpair_list : pair\n                 | pair COMMA pair_list\n                 | empty\n    pair : STRING COLON value\n            | NUMBER COLON value\n    expression : term PLUS term\n                  | term MINUS term\n                  | term\n    term : factor TIMES factor\n            | factor DIVIDE factor\n            | factor\n    factor : NUMBER\n              | ID\n              | LPAREN expression RPAREN\n    empty :'
     
-_lr_action_items = {'ID':([0,9,10,11,13,17,23,24,36,37,39,40,41,42,43,48,51,65,67,69,],[8,20,21,20,20,20,20,20,20,20,8,20,20,20,58,20,20,58,8,8,]),'IF':([0,39,67,69,],[9,9,9,9,]),'DEF':([0,39,67,69,],[10,10,10,10,]),'LBRACKET':([0,13,17,39,48,51,67,69,],[13,13,13,13,13,13,13,13,]),'LBRACE':([0,13,17,39,48,51,67,69,],[14,14,14,14,14,14,14,14,]),'NUMBER':([0,9,11,13,17,23,24,36,37,39,40,41,42,48,51,67,69,],[16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,]),'LPAREN':([0,9,11,13,17,21,23,24,36,37,39,40,41,42,48,51,67,69,],[11,11,11,11,11,43,11,11,11,11,11,11,11,11,11,11,11,11,]),'$end':([1,2,3,4,5,6,7,8,12,15,16,20,28,29,30,31,38,44,45,46,47,49,52,53,54,70,71,],[0,-1,-2,-3,-4,-5,-6,-38,-33,-36,-37,-38,-8,-9,-10,-11,-7,-39,-31,-32,-22,-26,-34,-35,-13,-12,-18,]),'ELSE':([2,3,4,5,6,7,8,12,15,16,20,28,29,30,31,38,44,45,46,47,49,52,53,54,70,71,],[-1,-2,-3,-4,-5,-6,-38,-33,-36,-37,-38,-8,-9,-10,-11,-7,-39,-31,-32,-22,-26,-34,-35,64,-12,-18,]),'EQUALS':([8,],[17,]),'TIMES':([8,15,16,20,44,],[-38,36,-37,-38,-39,]),'DIVIDE':([8,15,16,20,44,],[-38,37,-37,-38,-39,]),'PLUS':([8,12,15,16,20,44,52,53,],[-38,23,-36,-37,-38,-39,-34,-35,]),'MINUS':([8,12,15,16,20,44,52,53,],[-38,24,-36,-37,-38,-39,-34,-35,]),'GT':([12,15,16,19,20,44,45,46,52,53,],[-33,-36,-37,40,-38,-39,-31,-32,-34,-35,]),'LT':([12,15,16,19,20,44,45,46,52,53,],[-33,-36,-37,41,-38,-39,-31,-32,-34,-35,]),'EQEQ':([12,15,16,19,20,44,45,46,52,53,],[-33,-36,-37,42,-38,-39,-31,-32,-34,-35,]),'COLON':([12,15,16,18,19,20,35,44,45,46,52,53,55,56,57,64,66,],[-33,-36,-37,39,-17,-38,51,-39,-31,-32,-34,-35,-14,-15,-16,67,69,]),'RPAREN':([12,15,16,20,22,43,44,45,46,52,53,58,59,60,65,68,],[-33,-36,-37,-38,44,-40,-39,-31,-32,-34,-35,-19,66,-21,-40,-20,]),'COMMA':([12,15,16,20,26,28,29,30,31,33,44,45,46,47,49,52,53,58,63,],[-33,-36,-37,-38,48,-8,-9,-10,-11,50,-39,-31,-32,-22,-26,-34,-35,65,-30,]),'RBRACKET':([12,13,15,16,20,25,26,27,28,29,30,31,44,45,46,47,48,49,52,53,61,],[-33,-40,-36,-37,-38,47,-23,-25,-8,-9,-10,-11,-39,-31,-32,-22,-40,-26,-34,-35,-24,]),'RBRACE':([12,14,15,16,20,28,29,30,31,32,33,34,44,45,46,47,49,50,52,53,62,63,],[-33,-40,-36,-37,-38,-8,-9,-10,-11,49,-27,-29,-39,-31,-32,-22,-26,-40,-34,-35,-28,-30,]),'STRING':([13,14,17,48,50,51,],[29,35,29,29,35,29,]),}
+_lr_action_items = {'ID':([0,9,10,11,13,17,23,24,39,40,42,43,44,45,46,51,54,55,70,72,74,],[8,20,21,20,33,33,20,20,20,20,8,20,20,20,62,33,33,33,62,8,8,]),'IF':([0,42,72,74,],[9,9,9,9,]),'DEF':([0,42,72,74,],[10,10,10,10,]),'LBRACKET':([0,13,17,42,51,54,55,72,74,],[13,13,13,13,13,13,13,13,13,]),'LBRACE':([0,13,17,42,51,54,55,72,74,],[14,14,14,14,14,14,14,14,14,]),'NUMBER':([0,9,11,13,14,17,23,24,39,40,42,43,44,45,51,53,54,55,72,74,],[16,16,16,32,38,32,16,16,16,16,16,16,16,16,32,38,32,32,16,16,]),'LPAREN':([0,9,11,13,17,21,23,24,39,40,42,43,44,45,51,54,55,72,74,],[11,11,11,11,11,46,11,11,11,11,11,11,11,11,11,11,11,11,11,]),'$end':([1,2,3,4,5,6,7,8,12,15,16,20,28,29,30,31,32,33,41,47,48,49,50,52,56,57,58,75,76,],[0,-1,-2,-3,-4,-5,-6,-41,-36,-39,-40,-41,-8,-9,-10,-11,-12,-13,-7,-42,-34,-35,-24,-28,-37,-38,-15,-14,-20,]),'ELSE':([2,3,4,5,6,7,8,12,15,16,20,28,29,30,31,32,33,41,47,48,49,50,52,56,57,58,75,76,],[-1,-2,-3,-4,-5,-6,-41,-36,-39,-40,-41,-8,-9,-10,-11,-12,-13,-7,-42,-34,-35,-24,-28,-37,-38,69,-14,-20,]),'EQUALS':([8,],[17,]),'TIMES':([8,15,16,20,32,33,47,],[-41,39,-40,-41,-40,-41,-42,]),'DIVIDE':([8,15,16,20,32,33,47,],[-41,40,-40,-41,-40,-41,-42,]),'PLUS':([8,12,15,16,20,32,33,47,56,57,],[-41,23,-39,-40,-41,-40,-41,-42,-37,-38,]),'MINUS':([8,12,15,16,20,32,33,47,56,57,],[-41,24,-39,-40,-41,-40,-41,-42,-37,-38,]),'GT':([12,15,16,19,20,47,48,49,56,57,],[-36,-39,-40,43,-41,-42,-34,-35,-37,-38,]),'LT':([12,15,16,19,20,47,48,49,56,57,],[-36,-39,-40,44,-41,-42,-34,-35,-37,-38,]),'EQEQ':([12,15,16,19,20,47,48,49,56,57,],[-36,-39,-40,45,-41,-42,-34,-35,-37,-38,]),'COLON':([12,15,16,18,19,20,37,38,47,48,49,56,57,59,60,61,69,71,],[-36,-39,-40,42,-19,-41,54,55,-42,-34,-35,-37,-38,-16,-17,-18,72,74,]),'RPAREN':([12,15,16,20,22,46,47,48,49,56,57,62,63,64,70,73,],[-36,-39,-40,-41,47,-43,-42,-34,-35,-37,-38,-21,71,-23,-43,-22,]),'COMMA':([12,15,16,20,26,28,29,30,31,32,33,35,47,48,49,50,52,56,57,62,67,68,],[-36,-39,-40,-41,51,-8,-9,-10,-11,-12,-13,53,-42,-34,-35,-24,-28,-37,-38,70,-32,-33,]),'RBRACKET':([12,13,15,16,20,25,26,27,28,29,30,31,32,33,47,48,49,50,51,52,56,57,65,],[-36,-43,-39,-40,-41,50,-25,-27,-8,-9,-10,-11,-12,-13,-42,-34,-35,-24,-43,-28,-37,-38,-26,]),'RBRACE':([12,14,15,16,20,28,29,30,31,32,33,34,35,36,47,48,49,50,52,53,56,57,66,67,68,],[-36,-43,-39,-40,-41,-8,-9,-10,-11,-12,-13,52,-29,-31,-42,-34,-35,-24,-28,-43,-37,-38,-30,-32,-33,]),'STRING':([13,14,17,51,53,54,55,],[29,37,29,29,37,29,29,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'statement':([0,39,67,69,],[1,54,70,71,]),'variable_declaration':([0,39,67,69,],[2,2,2,2,]),'if_else_statement':([0,39,67,69,],[3,3,3,3,]),'function_definition':([0,39,67,69,],[4,4,4,4,]),'expression':([0,9,11,13,17,39,40,41,42,48,51,67,69,],[5,19,22,28,28,5,55,56,57,28,28,5,5,]),'list':([0,13,17,39,48,51,67,69,],[6,30,30,6,30,30,6,6,]),'dictionary':([0,13,17,39,48,51,67,69,],[7,31,31,7,31,31,7,7,]),'term':([0,9,11,13,17,23,24,39,40,41,42,48,51,67,69,],[12,12,12,12,12,45,46,12,12,12,12,12,12,12,12,]),'factor':([0,9,11,13,17,23,24,36,37,39,40,41,42,48,51,67,69,],[15,15,15,15,15,15,15,52,53,15,15,15,15,15,15,15,15,]),'condition':([9,],[18,]),'item_list':([13,48,],[25,61,]),'value':([13,17,48,51,],[26,38,26,63,]),'empty':([13,14,43,48,50,65,],[27,34,60,27,34,60,]),'pair_list':([14,50,],[32,62,]),'pair':([14,50,],[33,33,]),'arg_list':([43,65,],[59,68,]),}
+_lr_goto_items = {'statement':([0,42,72,74,],[1,58,75,76,]),'variable_declaration':([0,42,72,74,],[2,2,2,2,]),'if_else_statement':([0,42,72,74,],[3,3,3,3,]),'function_definition':([0,42,72,74,],[4,4,4,4,]),'expression':([0,9,11,13,17,42,43,44,45,51,54,55,72,74,],[5,19,22,28,28,5,59,60,61,28,28,28,5,5,]),'list':([0,13,17,42,51,54,55,72,74,],[6,30,30,6,30,30,30,6,6,]),'dictionary':([0,13,17,42,51,54,55,72,74,],[7,31,31,7,31,31,31,7,7,]),'term':([0,9,11,13,17,23,24,42,43,44,45,51,54,55,72,74,],[12,12,12,12,12,48,49,12,12,12,12,12,12,12,12,12,]),'factor':([0,9,11,13,17,23,24,39,40,42,43,44,45,51,54,55,72,74,],[15,15,15,15,15,15,15,56,57,15,15,15,15,15,15,15,15,15,]),'condition':([9,],[18,]),'item_list':([13,51,],[25,65,]),'value':([13,17,51,54,55,],[26,41,26,67,68,]),'empty':([13,14,46,51,53,70,],[27,36,64,27,36,64,]),'pair_list':([14,53,],[34,66,]),'pair':([14,53,],[35,35,]),'arg_list':([46,70,],[63,73,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,44 +26,47 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> statement","S'",1,None,None,None),
-  ('statement -> variable_declaration','statement',1,'p_statement','parser.py',5),
-  ('statement -> if_else_statement','statement',1,'p_statement','parser.py',6),
-  ('statement -> function_definition','statement',1,'p_statement','parser.py',7),
-  ('statement -> expression','statement',1,'p_statement','parser.py',8),
-  ('statement -> list','statement',1,'p_statement','parser.py',9),
-  ('statement -> dictionary','statement',1,'p_statement','parser.py',10),
-  ('variable_declaration -> ID EQUALS value','variable_declaration',3,'p_variable_declaration','parser.py',16),
-  ('value -> expression','value',1,'p_value','parser.py',19),
-  ('value -> STRING','value',1,'p_value','parser.py',20),
-  ('value -> list','value',1,'p_value','parser.py',21),
-  ('value -> dictionary','value',1,'p_value','parser.py',22),
-  ('if_else_statement -> IF condition COLON statement ELSE COLON statement','if_else_statement',7,'p_if_else_statement','parser.py',27),
-  ('if_else_statement -> IF condition COLON statement','if_else_statement',4,'p_if_else_statement','parser.py',28),
-  ('condition -> expression GT expression','condition',3,'p_condition','parser.py',35),
-  ('condition -> expression LT expression','condition',3,'p_condition','parser.py',36),
-  ('condition -> expression EQEQ expression','condition',3,'p_condition','parser.py',37),
-  ('condition -> expression','condition',1,'p_condition','parser.py',38),
-  ('function_definition -> DEF ID LPAREN arg_list RPAREN COLON statement','function_definition',7,'p_function_definition','parser.py',46),
-  ('arg_list -> ID','arg_list',1,'p_arg_list','parser.py',49),
-  ('arg_list -> ID COMMA arg_list','arg_list',3,'p_arg_list','parser.py',50),
-  ('arg_list -> empty','arg_list',1,'p_arg_list','parser.py',51),
-  ('list -> LBRACKET item_list RBRACKET','list',3,'p_list','parser.py',61),
-  ('item_list -> value','item_list',1,'p_item_list','parser.py',64),
-  ('item_list -> value COMMA item_list','item_list',3,'p_item_list','parser.py',65),
-  ('item_list -> empty','item_list',1,'p_item_list','parser.py',66),
-  ('dictionary -> LBRACE pair_list RBRACE','dictionary',3,'p_dictionary','parser.py',76),
-  ('pair_list -> pair','pair_list',1,'p_pair_list','parser.py',79),
-  ('pair_list -> pair COMMA pair_list','pair_list',3,'p_pair_list','parser.py',80),
-  ('pair_list -> empty','pair_list',1,'p_pair_list','parser.py',81),
-  ('pair -> STRING COLON value','pair',3,'p_pair','parser.py',90),
-  ('expression -> term PLUS term','expression',3,'p_expression','parser.py',93),
-  ('expression -> term MINUS term','expression',3,'p_expression','parser.py',94),
-  ('expression -> term','expression',1,'p_expression','parser.py',95),
-  ('term -> factor TIMES factor','term',3,'p_term','parser.py',102),
-  ('term -> factor DIVIDE factor','term',3,'p_term','parser.py',103),
-  ('term -> factor','term',1,'p_term','parser.py',104),
-  ('factor -> NUMBER','factor',1,'p_factor','parser.py',111),
-  ('factor -> ID','factor',1,'p_factor','parser.py',112),
-  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor','parser.py',113),
-  ('empty -> <empty>','empty',0,'p_empty','parser.py',120),
+  ('statement -> variable_declaration','statement',1,'p_statement','parser.py',9),
+  ('statement -> if_else_statement','statement',1,'p_statement','parser.py',10),
+  ('statement -> function_definition','statement',1,'p_statement','parser.py',11),
+  ('statement -> expression','statement',1,'p_statement','parser.py',12),
+  ('statement -> list','statement',1,'p_statement','parser.py',13),
+  ('statement -> dictionary','statement',1,'p_statement','parser.py',14),
+  ('variable_declaration -> ID EQUALS value','variable_declaration',3,'p_variable_declaration','parser.py',19),
+  ('value -> expression','value',1,'p_value','parser.py',23),
+  ('value -> STRING','value',1,'p_value','parser.py',24),
+  ('value -> list','value',1,'p_value','parser.py',25),
+  ('value -> dictionary','value',1,'p_value','parser.py',26),
+  ('value -> NUMBER','value',1,'p_value','parser.py',27),
+  ('value -> ID','value',1,'p_value','parser.py',28),
+  ('if_else_statement -> IF condition COLON statement ELSE COLON statement','if_else_statement',7,'p_if_else_statement','parser.py',33),
+  ('if_else_statement -> IF condition COLON statement','if_else_statement',4,'p_if_else_statement','parser.py',34),
+  ('condition -> expression GT expression','condition',3,'p_condition','parser.py',42),
+  ('condition -> expression LT expression','condition',3,'p_condition','parser.py',43),
+  ('condition -> expression EQEQ expression','condition',3,'p_condition','parser.py',44),
+  ('condition -> expression','condition',1,'p_condition','parser.py',45),
+  ('function_definition -> DEF ID LPAREN arg_list RPAREN COLON statement','function_definition',7,'p_function_definition','parser.py',53),
+  ('arg_list -> ID','arg_list',1,'p_arg_list','parser.py',57),
+  ('arg_list -> ID COMMA arg_list','arg_list',3,'p_arg_list','parser.py',58),
+  ('arg_list -> empty','arg_list',1,'p_arg_list','parser.py',59),
+  ('list -> LBRACKET item_list RBRACKET','list',3,'p_list','parser.py',69),
+  ('item_list -> value','item_list',1,'p_item_list','parser.py',73),
+  ('item_list -> value COMMA item_list','item_list',3,'p_item_list','parser.py',74),
+  ('item_list -> empty','item_list',1,'p_item_list','parser.py',75),
+  ('dictionary -> LBRACE pair_list RBRACE','dictionary',3,'p_dictionary','parser.py',85),
+  ('pair_list -> pair','pair_list',1,'p_pair_list','parser.py',89),
+  ('pair_list -> pair COMMA pair_list','pair_list',3,'p_pair_list','parser.py',90),
+  ('pair_list -> empty','pair_list',1,'p_pair_list','parser.py',91),
+  ('pair -> STRING COLON value','pair',3,'p_pair','parser.py',101),
+  ('pair -> NUMBER COLON value','pair',3,'p_pair','parser.py',102),
+  ('expression -> term PLUS term','expression',3,'p_expression','parser.py',107),
+  ('expression -> term MINUS term','expression',3,'p_expression','parser.py',108),
+  ('expression -> term','expression',1,'p_expression','parser.py',109),
+  ('term -> factor TIMES factor','term',3,'p_term','parser.py',117),
+  ('term -> factor DIVIDE factor','term',3,'p_term','parser.py',118),
+  ('term -> factor','term',1,'p_term','parser.py',119),
+  ('factor -> NUMBER','factor',1,'p_factor','parser.py',127),
+  ('factor -> ID','factor',1,'p_factor','parser.py',128),
+  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor','parser.py',129),
+  ('empty -> <empty>','empty',0,'p_empty','parser.py',137),
 ]
